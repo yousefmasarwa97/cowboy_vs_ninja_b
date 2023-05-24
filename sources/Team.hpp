@@ -35,7 +35,6 @@ Character* choose_victum(Character*,Team *other);
 virtual void add( Character *hero);
 virtual void attack(Team *other);
 virtual int stillAlive() const;
-// vector<Character*> getTeam() {return this->team;}
 void setTeam(vector<Character*> newTeam){this->team = std::move(newTeam);}
 virtual void print();
 void sort();

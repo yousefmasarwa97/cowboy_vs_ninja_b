@@ -36,7 +36,14 @@ void Ninja::move( Character *enemy){
 }
 
 void Ninja::attack(Character *enemy){
-    slash(enemy);
+    if (this->distance(enemy) >= 1)
+    {
+        move(enemy);
+    }
+    else
+    {
+        slash(enemy);
+    }
 }
 
     
@@ -44,20 +51,41 @@ void Ninja::attack(Character *enemy){
 
 void Ninja::slash( Character *enemy){
     if (enemy==nullptr) {
-        throw ("enemy is null");
+        throw ("enemy is null"); 
+    }    
+    else if(!this->isAlive() ){ // throw error when the enemy or we dead
+        throw std::runtime_error("you are dead!!!");
     }
+
+    else if( !enemy->isAlive()){ // throw error when the enemy or we dead
+        throw std::runtime_error("enemy is dead!!!");
+        
+    }
+    
     else if (this==enemy) {
         throw std::runtime_error("You can't slash yourself");
     
     }
-    else if(!this->isAlive() || !enemy->isAlive()){ // throw error when the enemy or we dead
-        throw std::runtime_error("Character are dead!!!");
-    }
-
+   
     else if (this->isAlive() && enemy->isAlive() &&
-     this->distance(enemy)<1) {
+        this->distance(enemy)<1) {
         enemy->hit(40);
-    }
+    
+    }   
 }
+
+string  Ninja::print(){ 
+    string res;
+    if (isAlive()) {
+        res= " {" + this->getName() + "," +std::to_string(this->gethp())  + "," + 
+        (this->getLocation()).print() + "} ";
+    }
+    else if(!isAlive()) {
+   
+    res="N ("+this->getName()+")";
+    }
+    return res;
+}
+
 
 

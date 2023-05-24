@@ -34,14 +34,12 @@ void Cowboy::shoot( Character *enemy){
     if(this == enemy){ // throw error when the input is us
         throw std::runtime_error("You can't shoot yourself");
     }
-    // else if(!enemy->isAlive()){ // throw error when the enemy is dead
-    //     throw std::runtime_error("Enemy is dead");
-    // }
-    else if(enemy->isAlive() && hasboolets()){ // hit the enemy if he i alive and we have bullets
+    
+    else if(enemy->isAlive() && hasboolets()){ 
         enemy->hit(10);
         boolets--;
     }
-    else if(!hasboolets()){ // relaod when we don't have bullets
+    else if(!hasboolets()){ 
         reload();
     }
 }
@@ -66,17 +64,20 @@ void Cowboy::reload(){
     
 }
 
-// string Cowboy::print(){ 
-//     string res;
-//     if (isAlive()) {
-//         Character::print();
-//     }
-//     else {
+
+
+string Cowboy::print(){ 
+    string res;
+    if (isAlive()) {
+       res= " {" + this->getName() + "," +std::to_string(this->gethp())  + "," + 
+        (this->getLocation()).print() + "} ";
+    }
+    else if(!isAlive())  {
    
-//     res="C ("+this->getName()+")";
-//     }
-//     return res;
-// }
+    res="C ("+this->getName()+")";
+    }
+    return res;
+}
 
 int Cowboy::boolets_num(){
     return boolets;

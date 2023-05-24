@@ -15,14 +15,10 @@ class Character{
     public:
     
     Character(string name,const Point &location);
-    Character(string name,const Point &location,int hp);
-    //Character();
+    Character(string name,const Point &location,int );
+    
     virtual ~Character();
-    Character() = delete; 
-    Character(const Character &) = delete;
-    Character& operator =(Character const&) = delete;
-    Character(Character&&) = delete;
-    Character& operator=(Character&&) = delete;
+    
 
     
     void setismember(bool);
@@ -34,6 +30,7 @@ class Character{
     void hit(int hits);
     string getName();
     Point getLocation();
+    int gethp();
     virtual string print();
     double distance( Character *other);
     virtual void attack(Character *other)=0;

@@ -16,7 +16,7 @@ class Cowboy : public Character{
     void shoot( Character* enemy);
     bool hasboolets();
     void reload();
-    // string print();
+    string print();
     int boolets_num();
     void attack(Character*);
 

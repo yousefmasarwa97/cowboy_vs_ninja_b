@@ -16,9 +16,9 @@ void Team2::add(Character *hero)
     }
     if (hero->isAlive() && hero->getismember() == false)
     {
-        vector <Character*> newTeamMembers = get_team(); // get the members of the team
-        newTeamMembers.push_back(hero); // add the new member to the team
-        setTeam(newTeamMembers); // set the new team
+        vector <Character*> newTeamMembers = get_team(); 
+        newTeamMembers.push_back(hero); 
+        setTeam(newTeamMembers); 
         hero->setismember(true);
     }
 }

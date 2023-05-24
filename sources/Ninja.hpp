@@ -17,7 +17,8 @@ class Ninja : public Character{
     ~Ninja();
     void move( Character* enemy);
     virtual void slash( Character* enemy);
-    int get_hp();
     void attack(Character*);
+    string print();
+
 
 };

@@ -16,13 +16,7 @@ Team::Team(Character *leader):leader(leader){
     leader->setismember(true);
 }
 
-// Team::~Team(){
-//     for (auto &character:team){
-//         if (character!=NULL){
-//             delete character;
-//         }
-//     }
-// }
+
 Team::~Team()
 {
     for (Character *c : team)
@@ -101,54 +95,7 @@ void Team::attack(Team *other){
     
     }
 }
-//     for (size_t i=0; i<team.size(); i++) {
-//         if (Cowboy* cow=dynamic_cast<Cowboy*>(team.at(i))) {           
-//             if (cow->hasboolets() && cow->isAlive() && !victim->isAlive() && cow!=nullptr ) {
-//                 // if (other->stillAlive()) {
-//                 //     throw std::runtime_error("the enemy team is all dead");
-//                 // }
-//                 victim=choose_victum(leader,other);
-//                 cow->shoot(victim);
-//             }
-//             else if (cow->hasboolets() && cow->isAlive() && victim->isAlive() && cow!=nullptr) {
-//                 cow->shoot(victim);
-//             }
-//             else {
-//                 cow->reload();
-//             }
-        
-//         }
 
-//         else if (Ninja* ninja=dynamic_cast<Ninja*>(team.at(i))) {
-//             if (ninja->isAlive()  && victim->isAlive() && ninja!=nullptr ) {
-//                 if (!victim->isAlive() && ninja!=nullptr) {
-//                     // if (other->stillAlive()) {
-//                     //     throw std::runtime_error("the enemy team is all dead");
-//                     // }
-//                     victim=choose_victum(leader,other);
-//                     if (ninja->distance(victim)>=1) {
-//                         ninja->move(victim);
-//                     }
-//                     else {
-//                         ninja->slash(victim);
-//                     }   
-                
-//                 }
-
-//                 if (ninja->distance(victim)>=1) {
-//                     ninja->move(victim);
-//                 }
-//                 else {
-//                     ninja->slash(victim);
-//                 }   
-//             }
-            
-                
-                
-//         }
-
-//     }
-// }
     
 
    
@@ -159,39 +106,38 @@ void Team::attack(Team *other){
 Character* Team::choose_victum(Character *main_char,Team *other){
     if (other->stillAlive() < 1)
     {
-        //return nullptr;
         throw runtime_error("the team is already killed :~(");
     }else{
         double min_distance=10000;
         double currentdist=0;
-        Character* goal=nullptr;
+        Character* char_to_hit=nullptr;
         for(Character *c:other->get_team()){
             if (leader->distance(c)<min_distance && c->isAlive() ) {
                 min_distance=leader->distance(c);
-                goal=c;
+                char_to_hit=c;
             }
         }
-        return goal;
-        //throw ("cant find the nearest");
+        return char_to_hit;
+        
     }
 }
 
 
 void Team::choose_leader(){
     double min_distance=10000;
-    Character* powerfull=nullptr;
+    Character* main_character=nullptr;
     for (size_t i=0; i<team.size();i++) {
         if (team.at(i)==this->leader) {
             continue;
         }
         else if (this->leader->distance(team.at(i))<min_distance && team.at(i)->isAlive()) {
-            powerfull=team.at(i);
+            main_character=team.at(i);
             min_distance=this->leader->distance(team.at(i));
         }
         
     }
-    //throw ("cant find the nearest");
-   this->leader=powerfull;
+    
+   this->leader=main_character;
 }
 
 void Team::print(){
@@ -204,7 +150,7 @@ int Team::stillAlive()const{
     int counter=0;
    
     for (Character* member : team) {
-        if (member->isAlive()) { // if member is alive we increase aliveCount by 1
+        if (member->isAlive()) { 
             counter++;
         }
     }

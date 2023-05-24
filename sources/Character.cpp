@@ -1,5 +1,4 @@
 #include "Character.hpp"
-// #include <cstddef>
 #include "Ninja.hpp"
 #include "Point.hpp"
 #include <iostream>
@@ -15,8 +14,7 @@ Character::Character(string name,const Point &location)
 Character::Character(string name,const Point &location,int hp)
 :location(location),name(name),hp(hp),ismember(false){
 }
-// Character::Character():location(0,0),ismember(false){
-// }
+
 Character::~Character(){}
 
 void Character::setismember(bool flag){
@@ -26,6 +24,9 @@ void Character::setismember(bool flag){
 
 bool Character::getismember(){
     return ismember;
+}
+int Character::gethp(){
+    return this->hp;
 }
 
 bool Character::operator==(const Character &other) const{
@@ -76,11 +77,12 @@ void Character::hit(int hits){
 string Character::print(){
     string res;
 
-    if (isAlive()) {
-        res= " {" + this->getName() + "," +std::to_string(this->hp)  + "," + 
-        (this->location).print() + "} ";
-       return res;
-    }
-    res="("+this->name+")";
+    
+    res= " {" + this->getName() + "," +std::to_string(this->hp)  + "," + 
+    (this->location).print() + "} ";
+    return res;
+    
     return  res;
 }
+
+
