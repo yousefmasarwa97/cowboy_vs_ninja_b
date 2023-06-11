@@ -10,6 +10,7 @@ class Character{
     int hp;
     string name;
     bool ismember;
+    bool is_Ninja;
 
 
     public:
@@ -23,6 +24,8 @@ class Character{
     
     void setismember(bool);
     bool getismember();
+    void set_isninja(bool);
+    bool get_isninja();
 
     bool operator==(const Character&) const;
     void set_location(Point);

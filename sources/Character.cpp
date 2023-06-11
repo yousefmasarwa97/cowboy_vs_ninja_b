@@ -7,12 +7,12 @@ namespace ariel{}
 
 
 Character::Character(string name,const Point &location)
-:location(location),name(name),ismember(false){
+:location(location),name(name),ismember(false),is_Ninja(false){
    
 }
 
 Character::Character(string name,const Point &location,int hp)
-:location(location),name(name),hp(hp),ismember(false){
+:location(location),name(name),hp(hp),ismember(false),is_Ninja(false){
 }
 
 Character::~Character(){}
@@ -25,6 +25,15 @@ void Character::setismember(bool flag){
 bool Character::getismember(){
     return ismember;
 }
+void Character::set_isninja(bool flag){
+    is_Ninja=flag;
+
+}
+
+bool Character::get_isninja(){
+    return is_Ninja;
+}
+
 int Character::gethp(){
     return this->hp;
 }

@@ -7,7 +7,8 @@ namespace ariel {
 }
 
 
-Ninja::Ninja(string name,const Point &location):Character(name,location),speed(){       
+Ninja::Ninja(string name,const Point &location):Character(name,location),speed(){
+    this->set_isninja(true);           
 }
 
 Ninja::Ninja(string name,const Point &location,int hp)
